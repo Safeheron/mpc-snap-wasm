@@ -1,0 +1,10 @@
+build
+*.sig
+*.tar.gz
+output
+
+cmake-build-debug
+
+.idea
+
+.DS_Store
