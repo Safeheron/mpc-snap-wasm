@@ -2,7 +2,8 @@
 OPENSSL_ROOT=$1
 PROTOBUF_ROOT=$2
 CRYPTOSUITES_ROOT=$3
-PREFIX_PATH=$4
+MPCFLOW_ROOT=$4
+PREFIX_PATH=$5
 
 set -u
 
@@ -18,17 +19,21 @@ echo "Install path: $PREFIX_PATH"
 
 # openssl and protobuf path
 if [ x"$OPENSSL_ROOT" = x"" ]; then
-    OPENSSL_ROOT=/usr/local/safeheron/openssl/wasm
+    OPENSSL_ROOT=${PWD}/../openssl/output
 fi
 if [ x"$PROTOBUF_ROOT" = x"" ]; then
-    PROTOBUF_ROOT=/usr/local/safeheron/protobuf/wasm
+    PROTOBUF_ROOT=${PWD}/../protobuf/output
 fi
 if [ x"$CRYPTOSUITES_ROOT" = x"" ]; then
-    CRYPTOSUITES_ROOT=/usr/local/safeheron/crypto-suites/wasm
+    CRYPTOSUITES_ROOT=${PWD}/../crypto-suites/output
+fi
+if [ x"$MPCFLOW_ROOT" = x"" ]; then
+    MPCFLOW_ROOT=${PWD}/../mpc-flow/output
 fi
 echo "Openssl path: $OPENSSL_ROOT"
 echo "Protobuf path: $PROTOBUF_ROOT"
 echo "CryptoSuites path: $CRYPTOSUITES_ROOT"
+echo "MPCFlow path: $MPCFLOW_ROOT"
 
 # build path
 BUILD_DIR=${PWD}/build
@@ -40,22 +45,12 @@ echo "Build path: $BUILD_DIR"
 
 cd $BUILD_DIR
 
-# You can use below macros to disable special module(s)
-#    -DNO_MPC_GG18=ON
-#    -DNO_MPC_GG18_HD=ON
-#    -DNO_MPC_GG18_HD_V0=ON
-#    -DNO_MPC_GG20=ON
-#    -DNO_MPC_GG20_HD=ON
-#    -DNO_MPC_GG20_ENHANCE=ON
-#    -DNO_MPC_CMP=ON
-#    -DNO_MPC_CMP_N_N=ON
-#    -DNO_EDDSA_R4=ON
-#    -DNO_EDDSA_R4_V0=ON
 emcmake cmake .. \
 	-DCMAKE_INSTALL_PREFIX=$PREFIX_PATH \
 	-DOPENSSL_ROOT=$OPENSSL_ROOT \
 	-DPROTOBUF_ROOT=$PROTOBUF_ROOT \
-    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT 
+    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT \
+    -DMPCFLOW_ROOT=$MPCFLOW_ROOT 
 
 cmake --build . -- -j8
 

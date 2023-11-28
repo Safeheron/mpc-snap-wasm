@@ -8,6 +8,9 @@ echo "OPENSSL_OUTPUT_DIR: ${OPENSSL_OUTPUT_DIR}"
 
 cd $OPENSSL_SRC_DIR || exit 1
 
+# Make sure binary files have the same hash everytime
+export SOURCE_DATE_EPOCH=1700815048
+
 make clean
 
 # !!!Must set platform as 'linux-x86'.
