@@ -66,10 +66,10 @@
   $ cd third_party/openssl
   $ cd openssl
   $ git checkout OpenSSL_1_1_1-stable
-  $ cd ..
+  $ cd ../../dependency/build-opnessl
   $ ./build.sh
 ```
-- 编译成功后，输出文件目录为：third_party/openssl/output
+- 编译成功后，输出文件目录为：dependency/include 和 dependency/lib
 
 ### 4.3 编译Protobuf
 
@@ -79,33 +79,27 @@
   $ cd third_party/protobuf
   $ cd protobuf
   $ git checkout 3.20.x
-  $ cd ..
+  $ cd ../../dependency/build-protobuf
   $ ./build.sh
 ```
-- 编译成功后，输出文件目录为：third_party/protobuf/output
+- 编译成功后，输出文件目录为：dependency/include 和 dependency/lib
 
 ### 4.4 编译CryptoSuites
 
-- 使用stark_macro分支
+- 使用main分支
 
 ```
-  $ cd third_party/crypto-suites
-  $ cd safeheron-crypto-suites-cpp
-  $ git checkout stark_macro
-  $ cd ..
+  $ cd dependency/build-crypto-suites
   $ ./build.sh
 ```
-- 编译成功后，输出文件目录为：third_party/crypto-suites/output
+- 编译成功后，输出文件目录为：dependency/include 和 dependency/lib
 
 ### 4.5 multi-party-ecdsa
 
-- 使用cmp_incremental_audit分支
+- 使用main分支
 
 ```
-  $ cd third_party/multi-party-ecdsa
-  $ cd multi-party-ecdsa-cpp
-  $ git checkout cmp_incremental_audit
-  $ cd ..
+  $ cd dependency/build-multi-party-sig
   $ ./build.sh
 ```
-- 编译成功后，输出文件目录为：third_party/multi-party-ecdsa/output
+- 编译成功后，输出文件目录为：dependency/include 和 dependency/lib
