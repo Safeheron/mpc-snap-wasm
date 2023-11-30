@@ -1,9 +1,9 @@
 #!/bin/sh
 
-OPENSSL_SRC_DIR=${PWD}/openssl
+OPENSSL_SRC_DIR=${PWD}/../../third_party/openssl
 echo "OPENSSL_SRC_DIR: ${OPENSSL_SRC_DIR}"
 
-OPENSSL_OUTPUT_DIR=${PWD}/output
+OPENSSL_OUTPUT_DIR=${PWD}/../
 echo "OPENSSL_OUTPUT_DIR: ${OPENSSL_OUTPUT_DIR}"
 
 cd $OPENSSL_SRC_DIR || exit 1

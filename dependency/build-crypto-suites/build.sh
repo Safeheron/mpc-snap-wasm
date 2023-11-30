@@ -7,7 +7,7 @@ set -u
 
 # install path
 if [ x"$PREFIX_PATH" = x"" ]; then
-    PREFIX_PATH=${PWD}/output
+    PREFIX_PATH=${PWD}/../
 fi
 if [ -d "$PREFIX_PATH" ]; then
     rm -rf "$PREFIX_PATH"
@@ -17,13 +17,17 @@ echo "Install path: $PREFIX_PATH"
 
 # openssl and protobuf path
 if [ x"$OPENSSL_ROOT" = x"" ]; then
-    OPENSSL_ROOT=${PWD}/../openssl/output
+    OPENSSL_ROOT=${PWD}/../
 fi
 if [ x"$PROTOBUF_ROOT" = x"" ]; then
-    PROTOBUF_ROOT=${PWD}/../protobuf/output
+    PROTOBUF_ROOT=${PWD}/../
 fi
 echo "Openssl path: $OPENSSL_ROOT"
 echo "Protobuf path: $PROTOBUF_ROOT"
+
+# link source code paths
+target_src_symbol=$(pwd)/safeheron-crypto-suites-cpp
+ln -s $(pwd)/../../third_party/safeheron-crypto-suites-cpp $target_src_symbol
 
 # build path
 BUILD_DIR=${PWD}/build
@@ -45,6 +49,7 @@ cmake --build . -- -j8
 
 make install
 
+rm -rf $target_src_symbol
 rm -rf "$BUILD_DIR"
 
 echo "done"

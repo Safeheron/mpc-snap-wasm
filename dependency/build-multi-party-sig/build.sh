@@ -8,7 +8,7 @@ set -u
 
 # install path
 if [ x"$PREFIX_PATH" = x"" ]; then
-    PREFIX_PATH=${PWD}/output
+    PREFIX_PATH=${PWD}/../
 fi
 if [ -d "$PREFIX_PATH" ]; then
     rm -rf "$PREFIX_PATH"
@@ -18,17 +18,21 @@ echo "Install path: $PREFIX_PATH"
 
 # openssl and protobuf path
 if [ x"$OPENSSL_ROOT" = x"" ]; then
-    OPENSSL_ROOT=${PWD}/../openssl/output
+    OPENSSL_ROOT=${PWD}/../
 fi
 if [ x"$PROTOBUF_ROOT" = x"" ]; then
-    PROTOBUF_ROOT=${PWD}/../protobuf/output
+    PROTOBUF_ROOT=${PWD}/../
 fi
 if [ x"$CRYPTOSUITES_ROOT" = x"" ]; then
-    CRYPTOSUITES_ROOT=${PWD}/../crypto-suites/output
+    CRYPTOSUITES_ROOT=${PWD}/../
 fi
 echo "Openssl path: $OPENSSL_ROOT"
 echo "Protobuf path: $PROTOBUF_ROOT"
 echo "CryptoSuites path: $CRYPTOSUITES_ROOT"
+
+# link source code paths
+target_src_symbol=$(pwd)/multi-party-sig-cpp
+ln -s $(pwd)/../../third_party/multi-party-sig-cpp $target_src_symbol
 
 # build path
 BUILD_DIR=${PWD}/build
@@ -44,8 +48,8 @@ emcmake cmake .. \
 	-DCMAKE_INSTALL_PREFIX=$PREFIX_PATH \
 	-DOPENSSL_ROOT=$OPENSSL_ROOT \
 	-DPROTOBUF_ROOT=$PROTOBUF_ROOT \
-    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT
-    #-DENABLE_SNAP_SCOPE=ON
+    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT \
+    -DENABLE_SNAP_SCOPE=ON
 
 cmake --build . -- -j8
 

@@ -1,9 +1,9 @@
 #!/bin/sh
 
-PROTOBUF_SRC_DIR=${PWD}/protobuf
+PROTOBUF_SRC_DIR=${PWD}/../../third_party/protobuf
 echo "PROTOBUF_SRC_DIR: ${PROTOBUF_SRC_DIR}"
 
-PROTOBUF_OUTPUT_DIR=${PWD}/output
+PROTOBUF_OUTPUT_DIR=${PWD}/../
 echo "PROTOBUF_OUTPUT_DIR: ${PROTOBUF_OUTPUT_DIR}"
 
 cd $PROTOBUF_SRC_DIR || exit 1
