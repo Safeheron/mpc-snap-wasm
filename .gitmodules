@@ -4,9 +4,6 @@
 [submodule "third_party/protobuf/protobuf"]
 	path = third_party/protobuf/protobuf
 	url = git@github.com:protocolbuffers/protobuf.git
-[submodule "third_party/crypto-suites/safeheron-crypto-suites-cpp"]
-	path = third_party/crypto-suites/safeheron-crypto-suites-cpp
-	url = git@github.com:Safeheron/safeheron-crypto-suites-cpp.git
 [submodule "third_party/multi-party-ecdsa/multi-party-ecdsa-cpp"]
 	path = third_party/multi-party-ecdsa/multi-party-ecdsa-cpp
 	url = git@github.com:Safeheron/multi-party-ecdsa-cpp.git
@@ -16,3 +13,6 @@
 [submodule "third_party/nlohmann"]
 	path = third_party/nlohmann
 	url = git@github.com:nlohmann/json.git
+[submodule "third_party/crypto-suites/crypto-suites"]
+	path = third_party/crypto-suites/crypto-suites
+	url = git@github.com:Safeheron/safeheron-crypto-suites-cpp.git
