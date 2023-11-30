@@ -26,25 +26,21 @@ else()
     )    
 endif()
 
-set(ENABLE_ASSEMBLE ON)
-add_definitions(-DENABLE_ASSEMBLE)
-add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/mpc-flow)
-add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa)
+add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src/multi-party-sig/mpc-flow)
+add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src/multi-party-sig/multi-party-ecdsa)
 
 # Set include path
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/mpc-flow
-    ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa
+    ${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src
     ${OPENSSL_ROOT}/include
     ${PROTOBUF_ROOT}/include
     ${CRYPTOSUITES_ROOT}/include
-    ${CRYPTOSUITES_ROOT}/include/crypto-suites
 )
 
 # Install header files
 install(
         DIRECTORY
-            ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa
-        DESTINATION include/safeheron
+            ${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src/multi-party-sig
+        DESTINATION include
         FILES_MATCHING PATTERN "*.h"
 )
