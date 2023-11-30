@@ -2,8 +2,7 @@
 OPENSSL_ROOT=$1
 PROTOBUF_ROOT=$2
 CRYPTOSUITES_ROOT=$3
-MPCFLOW_ROOT=$4
-PREFIX_PATH=$5
+PREFIX_PATH=$4
 
 set -u
 
@@ -27,13 +26,9 @@ fi
 if [ x"$CRYPTOSUITES_ROOT" = x"" ]; then
     CRYPTOSUITES_ROOT=${PWD}/../crypto-suites/output
 fi
-if [ x"$MPCFLOW_ROOT" = x"" ]; then
-    MPCFLOW_ROOT=${PWD}/../mpc-flow/output
-fi
 echo "Openssl path: $OPENSSL_ROOT"
 echo "Protobuf path: $PROTOBUF_ROOT"
 echo "CryptoSuites path: $CRYPTOSUITES_ROOT"
-echo "MPCFlow path: $MPCFLOW_ROOT"
 
 # build path
 BUILD_DIR=${PWD}/build
@@ -49,8 +44,7 @@ emcmake cmake .. \
 	-DCMAKE_INSTALL_PREFIX=$PREFIX_PATH \
 	-DOPENSSL_ROOT=$OPENSSL_ROOT \
 	-DPROTOBUF_ROOT=$PROTOBUF_ROOT \
-    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT \
-    -DMPCFLOW_ROOT=$MPCFLOW_ROOT 
+    -DCRYPTOSUITES_ROOT=$CRYPTOSUITES_ROOT
     #-DENABLE_SNAP_SCOPE=ON
 
 cmake --build . -- -j8

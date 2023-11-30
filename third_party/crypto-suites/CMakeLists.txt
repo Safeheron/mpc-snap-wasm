@@ -26,7 +26,7 @@ else()
 endif()
 
 # Set the source file path
-set(CRYPTO_SUITES_SOURCE_PATH ${CMAKE_SOURCE_DIR}/safeheron-crypto-suites-cpp/src)
+set(CRYPTO_SUITES_SOURCE_PATH ${CMAKE_SOURCE_DIR}/crypto-suites/src)
 message(STATUS "CRYPTO_SUITES_SOURCE_PATH=${CRYPTO_SUITES_SOURCE_PATH}")
 
 set(ENABLE_ASSEMBLE ON)
@@ -75,7 +75,7 @@ install(
             ${CRYPTO_SUITES_SOURCE_PATH}/crypto-bip32-cpp/src/
             ${CRYPTO_SUITES_SOURCE_PATH}/crypto-bip39-cpp/src/
             ${CRYPTO_SUITES_SOURCE_PATH}/crypto-ecies-cpp/src/
-        DESTINATION include/safeheron
+        DESTINATION include/crypto-suites
         FILES_MATCHING PATTERN "*.h"
 
         # crypto-bip32-cpp

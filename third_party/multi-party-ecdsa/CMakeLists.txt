@@ -13,7 +13,6 @@ cmake_policy(SET CMP0079 NEW)
 message(STATUS "OPENSSL_ROOT=${OPENSSL_ROOT}")
 message(STATUS "PROTOBUF_ROOT=${PROTOBUF_ROOT}")
 message(STATUS "CRYPTOSUITES_ROOT=${CRYPTOSUITES_ROOT}")
-message(STATUS "MPCFLOW_ROOT=${MPCFLOW_ROOT}")
 
 # Build shared or static 
 if(${ENABLE_SHARED})
@@ -29,23 +28,23 @@ endif()
 
 set(ENABLE_ASSEMBLE ON)
 add_definitions(-DENABLE_ASSEMBLE)
-add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src)
+add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/mpc-flow)
+add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa)
 
 # Set include path
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
-    ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src
+    ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/mpc-flow
+    ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa
     ${OPENSSL_ROOT}/include
     ${PROTOBUF_ROOT}/include
     ${CRYPTOSUITES_ROOT}/include
-    ${CRYPTOSUITES_ROOT}/include/safeheron
-    ${MPCFLOW_ROOT}/include
-    ${MPCFLOW_ROOT}/include/safeheron
+    ${CRYPTOSUITES_ROOT}/include/crypto-suites
 )
 
 # Install header files
 install(
         DIRECTORY
-            ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/
+            ${CMAKE_SOURCE_DIR}/multi-party-ecdsa-cpp/src/multi-party-ecdsa
         DESTINATION include/safeheron
         FILES_MATCHING PATTERN "*.h"
 )
