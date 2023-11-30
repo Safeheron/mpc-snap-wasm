@@ -13,3 +13,6 @@
 [submodule "third_party/mpc-flow/mpc-flow-cpp"]
 	path = third_party/mpc-flow/mpc-flow-cpp
 	url = git@github.com:Safeheron/mpc-flow-cpp.git
+[submodule "third_party/nlohmann"]
+	path = third_party/nlohmann
+	url = git@github.com:nlohmann/json.git
