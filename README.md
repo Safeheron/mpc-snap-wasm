@@ -47,7 +47,6 @@
  - Openssl, 仓库地址：https://github.com/openssl/openssl
  - Protobuf, 仓库地址：https://github.com/protocolbuffers/protobuf
  - Safeheron CryptoSuites, 仓库地址：https://github.com/Safeheron/safeheron-crypto-suites-cpp
- - Safeheron mpc-flow-cpp, 仓库地址：https://github.com/Safeheron/mpc-flow-cpp
  - Safeheron multi-party-ecdsa, 仓库地址：https://github.com/Safeheron/multi-party-ecdsa-cpp
 
 ## 4. 编译说明
@@ -98,25 +97,14 @@
 ```
 - 编译成功后，输出文件目录为：third_party/crypto-suites/output
 
-### 4.5 编译mpc-flow
+### 4.5 multi-party-ecdsa
 
-- 使用main分支
-
-```
-  $ cd third_party/mpc-flow
-  $ cd mpc-flow-cpp
-  $ cd ..
-  $ ./build.sh
-```
-- 编译成功后，输出文件目录为：third_party/mpc-flow/output
-
-### 4.6 multi-party-ecdsa
-
-- 使用main分支
+- 使用cmp_incremental_audit分支
 
 ```
   $ cd third_party/multi-party-ecdsa
   $ cd multi-party-ecdsa-cpp
+  $ git checkout cmp_incremental_audit
   $ cd ..
   $ ./build.sh
 ```
