@@ -4,21 +4,23 @@
 #include <crypto-encode/hex.h>
 #include <crypto-hash/safe_hash256.h>
 #include <crypto-zkp/dlog_proof_v2.h>
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include "../common/tools.h"
 #include "../common/json_helper_ex.h"
+
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 
 MinimalKeyParam::MinimalKeyParam()
 : curve_type_(safeheron::curve::CurveType::INVALID_CURVE)
 , n_parties_(0)
 , threshold_(0)
-{
-}
+{ }
 
-bool MinimalKeyParam::FromJson(const char* str, int size, std::string &err_msg)
-{
+bool MinimalKeyParam::FromJson(const char *str, int size, std::string &err_msg) {
     nlohmann::json root;
-    if (!parse_json_str(str, size, root, err_msg)) return false;
+    if (!safeheron::mpc_snap_wasm::common::parse_json_str(str, size, root, err_msg)) return false;
 
     int num;
     if (!json_helper::fetch_json_int_node(root, "curve_type", num, err_msg)) return false;
@@ -70,10 +72,18 @@ bool MinimalKeyParam::FromJson(const char* str, int size, std::string &err_msg)
         safeheron::bignum::BN remote_party_index;
         safeheron::curve::CurvePoint remote_X;
         std::string remote_dlog_zkp;
-        if (!json_helper::fetch_json_string_node(remote_party_node, "party_id", remote_party_id, err_msg)) return false;
-        if (!json_helper::fetch_json_bn_node(remote_party_node, "index", remote_party_index, err_msg)) return false;
-        if (!json_helper::fetch_json_curve_point_node(remote_party_node, "X", curve_type_, remote_X, err_msg)) return false;
-        if (!json_helper::fetch_json_string_node(remote_party_node, "dlog_zkp", remote_dlog_zkp, err_msg)) return false;
+        if (!json_helper::fetch_json_string_node(remote_party_node, "party_id", remote_party_id,
+                                                 err_msg))
+            return false;
+        if (!json_helper::fetch_json_bn_node(remote_party_node, "index", remote_party_index,
+                                             err_msg))
+            return false;
+        if (!json_helper::fetch_json_curve_point_node(remote_party_node, "X", curve_type_, remote_X,
+                                                      err_msg))
+            return false;
+        if (!json_helper::fetch_json_string_node(remote_party_node, "dlog_zkp", remote_dlog_zkp,
+                                                 err_msg))
+            return false;
 
         safeheron::zkp::dlog::DLogProof_V2 dlog_zkp;
         ok = dlog_zkp.FromBase64(remote_dlog_zkp);
@@ -124,5 +134,9 @@ std::string MinimalKeyParam::gen_rid() {
     }
     sha256.Finalize(digest);
 
-    return std::string((const char*)digest, sizeof(digest));
+    return std::string((const char *) digest, sizeof(digest));
+}
+
+}
+}
 }

@@ -1,11 +1,14 @@
-#ifndef SAFEHERONMULTIPARTYSIGNATURE_KEY_GEN_CONTEXT_PARAM_H
-#define SAFEHERONMULTIPARTYSIGNATURE_KEY_GEN_CONTEXT_PARAM_H
+#ifndef SAFEHERON_MPC_SNAP_WASM_PARAMS_KEY_GEN_CONTEXT_PARAM_H
+#define SAFEHERON_MPC_SNAP_WASM_PARAMS_KEY_GEN_CONTEXT_PARAM_H
 
 #include <string>
 #include <vector>
 #include <crypto-bn/bn.h>
 #include <crypto-curve/curve.h>
 
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 class KeyGenContextParam {
 public:
     bool FromJson(const char *str, int size, std::string &err_msg);
@@ -31,5 +34,8 @@ public:
     safeheron::bignum::BN alpha_;
     safeheron::bignum::BN beta_;
 };
+}
+}
+}
 
-#endif //SAFEHERONMULTIPARTYSIGNATURE_KEY_GEN_CONTEXT_PARAM_H
+#endif //SAFEHERON_MPC_SNAP_WASM_PARAMS_KEY_GEN_CONTEXT_PARAM_H

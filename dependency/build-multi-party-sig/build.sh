@@ -55,6 +55,7 @@ cmake --build . -- -j8
 
 make install
 
+rm -rf $target_src_symbol
 rm -rf "$BUILD_DIR"
 
 echo "done"

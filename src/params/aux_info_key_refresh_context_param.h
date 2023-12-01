@@ -1,10 +1,13 @@
-#ifndef _KEY_REFRESH_PARTY_PARAM_H_
-#define _KEY_REFRESH_PARTY_PARAM_H_
+#ifndef SAFEHERON_MPC_SNAP_WASM_PARAMS_AUX_INFO_KEY_REFRESH_CONTEXT_PARAM_H
+#define SAFEHERON_MPC_SNAP_WASM_PARAMS_AUX_INFO_KEY_REFRESH_CONTEXT_PARAM_H
 
 #include <string>
 #include <crypto-bn/bn.h>
 #include <multi-party-ecdsa/cmp/minimal_sign_key.h>
 
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 class KeyRefreshContextParam {
 public:
     bool FromJson(const char *str, int size, std::string &err_msg);
@@ -26,5 +29,7 @@ public:
     safeheron::bignum::BN alpha_;
     safeheron::bignum::BN beta_;
 };
-
-#endif //_KEY_REFRESH_PARTY_PARAM_H_
+}
+}
+}
+#endif //SAFEHERON_MPC_SNAP_WASM_PARAMS_AUX_INFO_KEY_REFRESH_CONTEXT_PARAM_H

@@ -1,14 +1,17 @@
-#ifndef _KEY_GEN_PARTY_PARAM_H_
-#define _KEY_GEN_PARTY_PARAM_H_
+#ifndef SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_GEN_CONTEXT_PARAM_H
+#define SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_GEN_CONTEXT_PARAM_H
 
 #include <string>
 #include <vector>
 #include <crypto-bn/bn.h>
 #include <crypto-curve/curve.h>
 
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 class MinimalKeyGenContextParam {
 public:
-    bool FromJson(const char* str, int size, std::string &err_msg);
+    bool FromJson(const char *str, int size, std::string &err_msg);
 public:
     MinimalKeyGenContextParam();
 
@@ -22,5 +25,8 @@ public:
     std::vector<std::string> remote_party_id_arr_;
     std::vector<safeheron::bignum::BN> remote_party_index_arr_;
 };
+}
+}
+}
 
-#endif //_KEY_GEN_PARTY_PARAM_H_
+#endif //SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_GEN_CONTEXT_PARAM_H

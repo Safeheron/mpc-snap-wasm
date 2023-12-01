@@ -1,13 +1,13 @@
 #ifndef TEE_JSON_HELPER_H
 #define TEE_JSON_HELPER_H
 
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include <string>
 #include <functional>
 
-using JSON = nlohmann::json;
-
 namespace json_helper {
+
+using JSON = nlohmann::json;
 
 template<typename T>
 bool fetch_json_node_value(const JSON &root, const std::string &node_name, T &value,

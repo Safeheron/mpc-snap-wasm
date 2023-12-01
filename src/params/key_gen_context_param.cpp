@@ -1,20 +1,22 @@
 #include "key_gen_context_param.h"
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include "../common/tools.h"
 #include "../common/json_helper_ex.h"
+
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 
 KeyGenContextParam::KeyGenContextParam()
 : curve_type_(safeheron::curve::CurveType::INVALID_CURVE)
 , n_parties_(0)
 , threshold_(0)
 , prepared_(false)
-{
-}
+{ }
 
-bool KeyGenContextParam::FromJson(const char *str, int size, std::string &err_msg)
-{
+bool KeyGenContextParam::FromJson(const char *str, int size, std::string &err_msg) {
     nlohmann::json root;
-    if (!parse_json_str(str, size, root, err_msg)) return false;
+    if (!safeheron::mpc_snap_wasm::common::parse_json_str(str, size, root, err_msg)) return false;
 
     int num;
     if (!json_helper::fetch_json_int_node(root, "curve_type", num, err_msg)) return false;
@@ -38,8 +40,11 @@ bool KeyGenContextParam::FromJson(const char *str, int size, std::string &err_ms
         nlohmann::json remote_party_node = *it;
         std::string remote_party_id;
         safeheron::bignum::BN remote_party_index;
-        if (!json_helper::fetch_json_string_node(remote_party_node, "party_id", remote_party_id, err_msg)) return false;
-        if (!json_helper::fetch_json_bn_node(remote_party_node, "index", remote_party_index, err_msg)) return false;
+        if (!json_helper::fetch_json_string_node(remote_party_node, "party_id", remote_party_id,
+                                                 err_msg))
+            return false;
+        if (!json_helper::fetch_json_bn_node(remote_party_node, "index", remote_party_index, err_msg))
+            return false;
         remote_party_id_arr_.push_back(remote_party_id);
         remote_party_index_arr_.push_back(remote_party_index);
     }
@@ -48,7 +53,8 @@ bool KeyGenContextParam::FromJson(const char *str, int size, std::string &err_ms
 
     if (root.find("prepared_data") != root.end()) {
         nlohmann::json prepared_data_node;
-        if (!json_helper::fetch_json_object_node(root, "prepared_data", prepared_data_node, err_msg)) return false;
+        if (!json_helper::fetch_json_object_node(root, "prepared_data", prepared_data_node, err_msg))
+            return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "N", N_, err_msg)) return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "s", s_, err_msg)) return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "t", t_, err_msg)) return false;
@@ -60,4 +66,8 @@ bool KeyGenContextParam::FromJson(const char *str, int size, std::string &err_ms
     }
 
     return true;
+}
+
+}
+}
 }

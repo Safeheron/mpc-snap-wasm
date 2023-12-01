@@ -1,12 +1,15 @@
 #include "sign_context_param.h"
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include "../common/tools.h"
 #include "../common/json_helper_ex.h"
 
-bool SignContextParam::FromJson(const char* str, int size, std::string &err_msg)
-{
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
+
+bool SignContextParam::FromJson(const char *str, int size, std::string &err_msg) {
     nlohmann::json root;
-    if (!parse_json_str(str, size, root, err_msg)) return false;
+    if (!safeheron::mpc_snap_wasm::common::parse_json_str(str, size, root, err_msg)) return false;
 
     if (!json_helper::fetch_json_string_node(root, "sign_key", sign_key_, err_msg)) return false;
 
@@ -21,4 +24,8 @@ bool SignContextParam::FromJson(const char* str, int size, std::string &err_msg)
     if (!json_helper::fetch_json_string_node(root, "sid", sid_, err_msg)) return false;
 
     return true;
+}
+
+}
+}
 }

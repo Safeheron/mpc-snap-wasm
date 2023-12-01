@@ -31,6 +31,11 @@ message(STATUS "CRYPTO_SUITES_SOURCE_PATH=${CRYPTO_SUITES_SOURCE_PATH}")
 
 add_subdirectory(${CRYPTO_SUITES_SOURCE_PATH})
 
+option(ENABLE_SNAP_SCOPE "Enable Snap Scope" OFF)
+if (${ENABLE_SNAP_SCOPE})
+    message(STATUS "Notice: ******************* Enable Snap Scope ******************* ")
+endif()
+
 # Set include path
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CRYPTO_SUITES_SOURCE_PATH}

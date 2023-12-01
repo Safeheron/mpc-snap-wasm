@@ -29,6 +29,11 @@ endif()
 add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src/multi-party-sig/mpc-flow)
 add_subdirectory(${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src/multi-party-sig/multi-party-ecdsa)
 
+option(ENABLE_SNAP_SCOPE "Enable Snap Scope" OFF)
+if (${ENABLE_SNAP_SCOPE})
+    message(STATUS "Notice: ******************* Enable Snap Scope ******************* ")
+endif()
+
 # Set include path
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/multi-party-sig-cpp/src
