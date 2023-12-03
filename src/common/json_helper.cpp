@@ -1,7 +1,3 @@
-//
-// Created by Sword03 on 2023/8/25.
-//
-
 #include "json_helper.h"
 
 namespace json_helper {

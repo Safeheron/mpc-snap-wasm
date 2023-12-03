@@ -1,5 +1,5 @@
-#ifndef TEE_JSON_HELPER_EX_H
-#define TEE_JSON_HELPER_EX_H
+#ifndef SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_EX_H
+#define SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_EX_H
 
 #include <string>
 #include "json_helper.h"
@@ -38,4 +38,4 @@ std::string compressed_point_to_json_str(safeheron::curve::CurvePoint &point);
 std::string edwards_point_to_json_str(safeheron::curve::CurvePoint &point);
 }
 
-#endif //TEE_JSON_HELPER_EX_H
+#endif //SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_EX_H

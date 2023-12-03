@@ -1,13 +1,13 @@
-#ifndef TEE_JSON_HELPER_H
-#define TEE_JSON_HELPER_H
+#ifndef SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_H
+#define SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_H
 
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include <string>
 #include <functional>
 
-using JSON = nlohmann::json;
-
 namespace json_helper {
+
+using JSON = nlohmann::json;
 
 template<typename T>
 bool fetch_json_node_value(const JSON &root, const std::string &node_name, T &value,
@@ -33,4 +33,4 @@ bool fetch_json_object_node(const JSON &root, const std::string &node_name, JSON
                             std::string &err_msg);
 }
 
-#endif //TEE_JSON_HELPER_H
+#endif //SAFEHERON_MPC_SNAP_WASM_COMMON_JSON_HELPER_H

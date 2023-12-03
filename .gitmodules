@@ -1,0 +1,15 @@
+[submodule "third_party/json"]
+	path = third_party/json
+	url = https://github.com/nlohmann/json.git
+[submodule "third_party/openssl"]
+	path = third_party/openssl
+	url = https://github.com/openssl/openssl.git
+[submodule "third_party/protobuf"]
+	path = third_party/protobuf
+	url = https://github.com/protocolbuffers/protobuf.git
+[submodule "third_party/safeheron-crypto-suites-cpp"]
+	path = third_party/safeheron-crypto-suites-cpp
+	url = https://github.com/Safeheron/safeheron-crypto-suites-cpp.git
+[submodule "third_party/multi-party-sig-cpp"]
+	path = third_party/multi-party-sig-cpp
+	url = https://github.com/Safeheron/multi-party-sig-cpp.git

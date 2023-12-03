@@ -1,18 +1,21 @@
 #include "aux_info_key_refresh_context_param.h"
-#include "third_party/nlohmann/json.hpp"
+#include "nlohmann/json.hpp"
 #include "../common/json_helper_ex.h"
 #include "../common/tools.h"
 
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
+
 KeyRefreshContextParam::KeyRefreshContextParam()
 : n_parties_(0)
-, prepared_(false)
 , update_flag_(true)
-{
-}
+, prepared_(false)
+{ }
 
 bool KeyRefreshContextParam::FromJson(const char *str, int size, std::string &err_msg) {
     nlohmann::json root;
-    if (!parse_json_str(str, size, root, err_msg)) return false;
+    if (!safeheron::mpc_snap_wasm::common::parse_json_str(str, size, root, err_msg)) return false;
 
     if (!json_helper::fetch_json_int_node(root, "n_parties", n_parties_, err_msg)) return false;
 
@@ -28,13 +31,17 @@ bool KeyRefreshContextParam::FromJson(const char *str, int size, std::string &er
 
     if (!json_helper::fetch_json_string_node(root, "sid", sid_, err_msg)) return false;
 
-    if (root.find("update_key_shares") != root.end()) {
-        if (!json_helper::fetch_json_bool_node(root, "update_key_shares", update_flag_, err_msg)) return false;
+    if (root.find("update_key_shards") != root.end()) {
+        if (!json_helper::fetch_json_bool_node(root, "update_key_shards", update_flag_, err_msg))
+            return false;
+    } else {
+        update_flag_ = true;
     }
 
     if (root.find("prepared_data") != root.end()) {
         nlohmann::json prepared_data_node;
-        if (!json_helper::fetch_json_object_node(root, "prepared_data", prepared_data_node, err_msg)) return false;
+        if (!json_helper::fetch_json_object_node(root, "prepared_data", prepared_data_node, err_msg))
+            return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "N", N_, err_msg)) return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "s", s_, err_msg)) return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "t", t_, err_msg)) return false;
@@ -43,7 +50,13 @@ bool KeyRefreshContextParam::FromJson(const char *str, int size, std::string &er
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "alpha", alpha_, err_msg)) return false;
         if (!json_helper::fetch_json_bn_node(prepared_data_node, "beta", beta_, err_msg)) return false;
         prepared_ = true;
+    } else {
+        prepared_ = false;
     }
 
     return true;
+}
+
+}
+}
 }

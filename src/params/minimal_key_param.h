@@ -1,5 +1,5 @@
-#ifndef SAFEHERON_PROJECTS_MPC_CMP_PARAMS_MINIMAL_KEY_PARAM_H
-#define SAFEHERON_PROJECTS_MPC_CMP_PARAMS_MINIMAL_KEY_PARAM_H
+#ifndef SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_PARAM_H
+#define SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_PARAM_H
 
 #include <string>
 #include <vector>
@@ -7,11 +7,14 @@
 #include <crypto-curve/curve.h>
 #include <crypto-curve/curve_point.h>
 
+namespace safeheron {
+namespace mpc_snap_wasm {
+namespace params {
 class MinimalKeyParam {
 public:
     MinimalKeyParam();
 public:
-    bool FromJson(const char* str, int size, std::string &err_msg);
+    bool FromJson(const char *str, int size, std::string &err_msg);
     std::string gen_rid();
 public:
     safeheron::curve::CurveType curve_type_;
@@ -25,5 +28,8 @@ public:
     std::vector<safeheron::bignum::BN> remote_party_index_arr_;
     std::vector<safeheron::curve::CurvePoint> remote_X_arr_;
 };
+}
+}
+}
 
-#endif //SAFEHERON_PROJECTS_MPC_CMP_PARAMS_MINIMAL_KEY_PARAM_H
+#endif //SAFEHERON_MPC_SNAP_WASM_PARAMS_MINIMAL_KEY_PARAM_H
